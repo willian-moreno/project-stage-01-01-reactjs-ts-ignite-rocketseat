@@ -1,3 +1,4 @@
+import { ImgHTMLAttributes } from 'react'
 import style from './style.module.css'
 
 type AvatarProp = {
@@ -5,9 +6,9 @@ type AvatarProp = {
   alt?: string,
   variant?: 'initial' | 'outlined'
   className?: string,
-}
+} & ImgHTMLAttributes<HTMLImageElement>
 
-export function Avatar({ src, alt, variant, className }: AvatarProp) {
+export function Avatar({ variant, className, ...imgProps }: AvatarProp) {
   const classes = [
     style.avatar,
     className
@@ -15,8 +16,7 @@ export function Avatar({ src, alt, variant, className }: AvatarProp) {
 
   return (
     <img
-      src={src}
-      alt={alt}
+      {...imgProps}
       className={classes}
       data-variant={variant}
     />
